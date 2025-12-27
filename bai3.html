@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chương trình quản lý Sách</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #000000; padding: 10px; text-align: left; }
+        th { background-color: #28a745; color: rgb(255, 255, 255); }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h2>DANH SÁCH QUẢN LÝ SÁCH</h2>
+    <button onclick="themSach()">Thêm sách mới</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Mã Sách</th>
+                <th>Tên Sách</th>
+                <th>Năm XB</th>
+                <th>Số quyển</th>
+                <th>Tình trạng</th>
+            </tr>
+        </thead>
+        <tbody id="listSach">
+            </tbody>
+    </table>
+
+    <script>
+        let danhSachSach = [];
+
+        function themSach() {
+            let maSach;
+            const regexMa = /^[1-5][0-9]{4}$/;
+            while (true) {
+                maSach = prompt("Nhap ma sach (5 ky tu, dau 1-5, so con lai 0-9):");
+                if (regexMa.test(maSach)) break;
+                alert("ma sach ko hop le ! vui long nhap lai (VD: 12345)");
+            }
+            let tenSach = prompt("nhap ten sach:");
+
+            let namXB;
+            while (true) {
+                namXB = prompt("nam xuat ban (nhap 4 so):");
+                if (/^[0-9]{4}$/.test(namXB)) break;
+                alert("nam xuat ban chi nhap dc 4 so!");
+            }
+
+            let soQuyen;
+            while (true) {
+                soQuyen = parseInt(prompt("nhap so luong sach:"));
+                if (!isNaN(soQuyen) && soQuyen >= 0) break;
+                alert("so luong phai >=0");
+            }
+            let tinhTrang = soQuyen > 0;
+            let sachMoi = {
+                ma: maSach,
+                ten: tenSach,
+                nam: namXB,
+                soLuong: soQuyen,
+                status: tinhTrang
+            };
+            danhSachSach.push(sachMoi);
+            alert("them sach thanh cong !");
+            hienThiDanhSach();
+        }
+
+        function hienThiDanhSach() {
+            let html = "";
+            for (let s of danhSachSach) {
+                html += `<tr>
+                    <td>${s.ma}</td>
+                    <td>${s.ten}</td>
+                    <td>${s.nam}</td>
+                    <td>${s.soLuong}</td>
+                    <td>${s.status ? "Còn sách" : "Hết sách"}</td>
+                </tr>`;
+            }
+            document.getElementById('listSach').innerHTML = html;
+        }
+    </script>
+</body>
+</html>
