@@ -6,51 +6,24 @@
     <title>trung bình cộng số lẻ ở vị trí chắn trong mảng</title>
 </head>
 <body>
-    <div class="container">
-    <h2>Tính TBC số lẻ ở vị trí chẵn</h2>
-    <p>Nhập các số nguyên, cách nhau bằng dấu phẩy (tối đa 50 số):</p>
     
-    <input type="text" id="Input" >
-    <button onclick="calculate()">Tính kết quả</button>
-
-    <div id="ketqua"></div>
-</div>
 
 <script>
-function calculate() {
-    const input = document.getElementById('Input').value;
-    const arr = input.split(',')
-                     .map(num => num.trim())
-                     .filter(num => num !== "")
-                     .map(Number);
-
-    if (arr.length > 50) {
-        alert("Vui lòng nhập tối đa 50 phần tử!");
-        return;
-    }
-
-    let sum = 0;
-    let count = 0;
-    let check = [];
-    for (let i = 0; i < arr.length; i += 2) {
-        if (arr[i] % 2 !== 0) {
-            sum += arr[i];
-            count++;
-            check.push(arr[i]);
+function Avg(){
+            let a=prompt("nhap chuoi so cach nhau bang dau phay")
+            let arr=a.split(",").map(Number)
+            let sum=0
+            let count=0
+            for (i=0;i<arr.length;i++){
+                if(i%2==0 && arr[i]%2==1){
+                    sum=sum+arr[i];
+                    count++;
+                }
+            }
+            let avg = sum/count;
+            document.write(avg.toFixed(2));
         }
-    }
-
-    const ketquatDiv = document.getElementById('ketqua');
-    if (count === 0) {
-        ketquatDiv.innerHTML = "Không có số lẻ nào ở vị trí chẵn.";
-    } else {
-        let tbc = sum / count;
-        ketquatDiv.innerHTML = `
-            Các số tìm thấy: ${check.join(", ")} <br>
-            Trung bình cộng: ${tbc.toFixed(2)}
-        `;
-    }
-}
+        Avg()
 </script>
 </body>
 </html>
