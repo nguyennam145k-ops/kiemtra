@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kiểm tra số thân thiết </title>
+</head>
+<body>
+    <script>
+        function tinhTongUoc(n) {
+    let tong = 0;
+    for (let i = 1; i <= n / 2; i++) {
+        if (n % i === 0) {
+            tong += i;
+        }
+    }
+    return tong;
+}
+
+
+ 
+function laCapSoThanThiet(a, b) {
+    
+    return (tinhTongUoc(a) === b) && (tinhTongUoc(b) === a);
+}
+
+console.log(laCapSoThanThiet(20, 221)); 
+console.log(laCapSoThanThiet(220, 284)) 
+
+    </script>
+</body>
+</html>
